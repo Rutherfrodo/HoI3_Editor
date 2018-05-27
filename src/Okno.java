@@ -35,6 +35,7 @@ import java.awt.Panel;
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JComboBox;
+import javax.swing.border.BevelBorder;
 
 public class Okno {
 	
@@ -75,9 +76,14 @@ public class Okno {
 	String sciezkaMap = sciezka+NazwaModa+"//map//";
 	private JTextField completion_Field;
 	private JTextField capacity_Field;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField cost_Field;
+	private JTextField time_Field;
+	private JTextField level_Field;
+	String completion_size;
+	String cost;
+	String time;
+	String max_level;
+	String capacity;
 	
 	public Okno() {
 		initialize();
@@ -156,69 +162,75 @@ public class Okno {
 		lblNewLabel_2.setBounds(190, 9, 506, 14);
 		panel.add(lblNewLabel_2);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(10, 165, 497, 328);
-		frame.getContentPane().add(panel_1);
-		panel_1.setLayout(null);
-		panel_1.setVisible(false);
+		JPanel panel_Budynki = new JPanel();
+		panel_Budynki.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		panel_Budynki.setBounds(10, 165, 497, 328);
+		frame.getContentPane().add(panel_Budynki);
+		panel_Budynki.setLayout(null);
+		panel_Budynki.setVisible(false);
 		
 		
 		JComboBox<String> BoxBudynki = new JComboBox<String>();
 		BoxBudynki.setBounds(10, 11, 153, 20);
-		panel_1.add(BoxBudynki);
+		panel_Budynki.add(BoxBudynki);
 		
 		JComboBox<String> BoxOnCompletion = new JComboBox<String>();
 		BoxOnCompletion.setBounds(149, 73, 179, 20);
-		panel_1.add(BoxOnCompletion);
+		panel_Budynki.add(BoxOnCompletion);
 		
 		completion_Field = new JTextField();
 		completion_Field.setBounds(149, 42, 109, 20);
-		panel_1.add(completion_Field);
+		panel_Budynki.add(completion_Field);
 		completion_Field.setColumns(10);
 		
 		capacity_Field = new JTextField();
 		capacity_Field.setBounds(149, 104, 109, 20);
-		panel_1.add(capacity_Field);
+		panel_Budynki.add(capacity_Field);
 		capacity_Field.setColumns(10);
 		
 		JLabel completionSize_Label = new JLabel("Completion_size");
 		completionSize_Label.setBounds(20, 45, 109, 14);
-		panel_1.add(completionSize_Label);
+		panel_Budynki.add(completionSize_Label);
 		
 		JLabel onCopletion_Label = new JLabel("On Completion");
 		onCopletion_Label.setBounds(20, 76, 109, 14);
-		panel_1.add(onCopletion_Label);
+		panel_Budynki.add(onCopletion_Label);
 		
 		JLabel capacity_Label = new JLabel("Capacity");
 		capacity_Label.setBounds(20, 105, 109, 14);
-		panel_1.add(capacity_Label);
+		panel_Budynki.add(capacity_Label);
 		
 		JLabel lblNewLabel_3 = new JLabel("Cost");
 		lblNewLabel_3.setBounds(20, 130, 46, 14);
-		panel_1.add(lblNewLabel_3);
+		panel_Budynki.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("Time");
 		lblNewLabel_4.setBounds(20, 161, 46, 14);
-		panel_1.add(lblNewLabel_4);
+		panel_Budynki.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("Max Level");
 		lblNewLabel_5.setBounds(20, 186, 77, 14);
-		panel_1.add(lblNewLabel_5);
+		panel_Budynki.add(lblNewLabel_5);
 		
-		textField = new JTextField();
-		textField.setBounds(149, 127, 109, 20);
-		panel_1.add(textField);
-		textField.setColumns(10);
+		cost_Field = new JTextField();
+		cost_Field.setBounds(149, 127, 109, 20);
+		panel_Budynki.add(cost_Field);
+		cost_Field.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(149, 158, 109, 20);
-		panel_1.add(textField_1);
-		textField_1.setColumns(10);
+		time_Field = new JTextField();
+		time_Field.setBounds(149, 158, 109, 20);
+		panel_Budynki.add(time_Field);
+		time_Field.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(149, 183, 109, 20);
-		panel_1.add(textField_2);
-		textField_2.setColumns(10);
+		level_Field = new JTextField();
+		level_Field.setBounds(149, 183, 109, 20);
+		panel_Budynki.add(level_Field);
+		level_Field.setColumns(10);
+		
+		JButton buttonZapiszBudynek = new JButton("Zapisz");
+
+		buttonZapiszBudynek.setBounds(10, 294, 143, 23);
+		panel_Budynki.add(buttonZapiszBudynek);
 		
 		//======================================================================================================
 		BoxBudynki.addItem("Lotnisko");
@@ -242,7 +254,7 @@ public class Okno {
 
 		
 		//===================================================================================
-		
+
 		
 		
 		//BUTTON listeners============================================================
@@ -278,14 +290,23 @@ public class Okno {
 		
 		mntmBudynki.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				panel_1.setVisible(true);
+				panel_Budynki.setVisible(true);
 				BoxBudynki.setSelectedIndex(0);
 				BoxBudynki.addActionListener(new ActionListener() { // Obsluga combobox od budynkow
 					public void actionPerformed(ActionEvent e) {
 						
 						CBoxItem LotniskoBoxItem = new CBoxItem(BoxBudynki,capacity_Label,"Lotnisko","Air Capacity");
-						
-						
+
+						buttonZapiszBudynek.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								cost = cost_Field.getText();
+								completion_size = completion_Field.getText();
+								time = time_Field.getText();
+								max_level = level_Field.getText();
+								capacity = capacity_Field.getText();
+								Budynki Lotnisko = new Budynki(sciezkaCommon,"Buildings",".txt","construction_practical",completion_size, capacity,"yes",cost,time,max_level,"yes");
+							}
+						});
 						CBoxItem PortBoxItem = new CBoxItem(BoxBudynki,capacity_Label,"Port","Port Capacity");
 						
 						
@@ -301,10 +322,7 @@ public class Okno {
 				
 			}
 		});
-		double completion_size;
-		int cost;
-		int time;
-		int max_level;			
+			
 	}
 
 	void Wiadomosc(String message) {JOptionPane.showMessageDialog(null, message);}  // Message Dialog, przydatne		
