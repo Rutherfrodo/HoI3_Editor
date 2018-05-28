@@ -1,0 +1,24 @@
+<xml>
+	<properties>
+		<property>
+			<name>air_capacity</name>
+			<displayName>Pojemność budynku</displayName>
+			<classType>int</classType>
+		</property>
+		<property>
+			<name></name>
+			<displayName></displayName>
+			<classType></classType>
+		</property>
+		<property>
+			<name></name>
+			<displayName></displayName>
+			<classType></classType>
+		</property>
+		<property>
+			<name></name>
+			<displayName></displayName>
+			<classType></classType>
+		</property>
+	</properties>
+</xml>
