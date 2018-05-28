@@ -13,7 +13,7 @@ public class Budynki {
 			Wiadomosc("Nie dziala!!!!");
 		}
 	}
-	public Budynki(String SciezkaDocelowa, String Nazwa, String Rozszrzeszenie, String practical, String completion_size, String air_capacity,String czy_na_mapie, String koszt, String czas,String maksymalny_poziom,String czy_widoczny) {
+	public Budynki(String SciezkaDocelowa, String Nazwa, String Rozszrzeszenie, String practical, double completion_size, int air_capacity,String czy_na_mapie, int koszt, int czas,int maksymalny_poziom,String czy_widoczny) {
 		try {
 			//Lotnisko
 			PrintWriter drukarz = new PrintWriter(new FileWriter(SciezkaDocelowa+Nazwa+Rozszrzeszenie,true)); //Parametr True odpowiada za dopisywanie do pliku, bez tego plik bylby nadpisywany

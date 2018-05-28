@@ -38,16 +38,10 @@ import javax.swing.JComboBox;
 import javax.swing.border.BevelBorder;
 
 public class Okno {
-	
 
-	
 	private JFrame frame;
 	private JTextField PoleSciezki;
-	
-	/**
-	 * Launch the application.
-	 */
-	
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -61,9 +55,6 @@ public class Okno {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
 	//DEKLARACJE SCIEZEK===================================================================
 	String sciezka = "D://STEAM//steamapps//common//Hearts of Iron 3//tfh//mod//";
 	String NazwaModa = "LegionMore";
@@ -84,14 +75,40 @@ public class Okno {
 	String time;
 	String max_level;
 	String capacity;
+	int building_save_control_value = 0;
 	
 	public Okno() {
 		initialize();
 	}
+	//Tworzenie buttonów
+	JButton btnNewButton = new JButton("Zatwierdz");
+	JButton btnNewButton_2 = new JButton("Wybierz ściezkę");
+	JButton buttonZapiszBudynek = new JButton("Zapisz");
 	
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	JMenuItem mntmNowy = new JMenuItem("Tworz Folder");
+	JMenuItem mntmDrugi = new JMenuItem("Tworz plik MOD");
+	JMenuItem mntmBudynki = new JMenuItem("Budynki");
+	JMenuItem mntmJednostki = new JMenuItem("Jednostki");
+	JMenuItem mntmMinistrw = new JMenuItem("Ministrów");
+	JMenuItem mntmEfekty = new JMenuItem("Efekty");
+	
+	JComboBox<String> BoxBudynki = new JComboBox<String>();
+	JComboBox<String> BoxOnCompletion = new JComboBox<String>();
+	
+	JLabel completionSize_Label = new JLabel("Completion_size");
+	JLabel onCopletion_Label = new JLabel("On Completion");
+	JLabel capacity_Label = new JLabel("Capacity");
+	JLabel lblNewLabel_5 = new JLabel("Max Level");
+	JLabel lblNewLabel_3 = new JLabel("Cost");
+	JLabel lblNewLabel_4 = new JLabel("Time");
+	JPanel panel_Budynki = new JPanel();
+	JLabel lblNewLabel_2 = new JLabel(sciezka);
+	JLabel lblNewLabel = new JLabel("Scieżka docelowa np:");
+	JLabel lblNewLabel_1 = new JLabel(sciezka);
+	
+	Panel panelsciezki = new Panel();
+	
+	
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1000, 650);
@@ -101,32 +118,24 @@ public class Okno {
 		frame.setJMenuBar(menuBar);
 		
 		JMenu mnNewMenu = new JMenu("Pliki");
-		menuBar.add(mnNewMenu);
+		menuBar.add(mnNewMenu);	
 		
-		JMenuItem mntmNowy = new JMenuItem("Tworz Folder");
-		mnNewMenu.add(mntmNowy);
-		
-		JMenuItem mntmDrugi = new JMenuItem("Tworz plik MOD");
+		mnNewMenu.add(mntmNowy);	
+	
 		mnNewMenu.add(mntmDrugi);
 		
 		JMenu mnTworz = new JMenu("Modyfikuj");
-		menuBar.add(mnTworz);
+		menuBar.add(mnTworz);	
 		
-		JMenuItem mntmBudynki = new JMenuItem("Budynki");
-		mnTworz.add(mntmBudynki);
-
+		mnTworz.add(mntmBudynki);	
 		
-		JMenuItem mntmJednostki = new JMenuItem("Jednostki");
 		mnTworz.add(mntmJednostki);
-		
-		JMenuItem mntmMinistrw = new JMenuItem("Ministrów");
+			
 		mnTworz.add(mntmMinistrw);
-		
-		JMenuItem mntmEfekty = new JMenuItem("Efekty");
+				
 		mnTworz.add(mntmEfekty);
 		frame.getContentPane().setLayout(null);
-		
-		Panel panelsciezki = new Panel();
+				
 		panelsciezki.setBounds(0, 34, 302, 125);
 		frame.getContentPane().add(panelsciezki);
 		panelsciezki.setLayout(null);
@@ -135,46 +144,38 @@ public class Okno {
 		PoleSciezki = new JTextField();
 		PoleSciezki.setBounds(10, 58, 282, 20);
 		panelsciezki.add(PoleSciezki);
-		PoleSciezki.setColumns(10);
+		PoleSciezki.setColumns(10);	
 		
-		JLabel lblNewLabel = new JLabel("Scieżka docelowa np:");
 		lblNewLabel.setBounds(10, 11, 169, 14);
-		panelsciezki.add(lblNewLabel);
+		panelsciezki.add(lblNewLabel);	
 		
-		JLabel lblNewLabel_1 = new JLabel(sciezka);
 		lblNewLabel_1.setBounds(10, 36, 259, 11);
 		panelsciezki.add(lblNewLabel_1);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		JButton btnNewButton = new JButton("Zatwierdz");
+		
 		btnNewButton.setBounds(10, 89, 112, 23);
 		panelsciezki.add(btnNewButton);
 		
 		Panel panel = new Panel();
 		panel.setBounds(0, 0, 659, 35);
 		frame.getContentPane().add(panel);
-		panel.setLayout(null);
+		panel.setLayout(null);	
 		
-		JButton btnNewButton_2 = new JButton("Wybierz ściezkę");
 		btnNewButton_2.setBounds(10, 5, 143, 23);
 		panel.add(btnNewButton_2);
-		
-		JLabel lblNewLabel_2 = new JLabel(sciezka);
+			
 		lblNewLabel_2.setBounds(190, 9, 506, 14);
 		panel.add(lblNewLabel_2);
 		
-		JPanel panel_Budynki = new JPanel();
 		panel_Budynki.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		panel_Budynki.setBounds(10, 165, 497, 328);
 		frame.getContentPane().add(panel_Budynki);
 		panel_Budynki.setLayout(null);
 		panel_Budynki.setVisible(false);
-		
-		
-		JComboBox<String> BoxBudynki = new JComboBox<String>();
+			
 		BoxBudynki.setBounds(10, 11, 153, 20);
-		panel_Budynki.add(BoxBudynki);
+		panel_Budynki.add(BoxBudynki);	
 		
-		JComboBox<String> BoxOnCompletion = new JComboBox<String>();
 		BoxOnCompletion.setBounds(149, 73, 179, 20);
 		panel_Budynki.add(BoxOnCompletion);
 		
@@ -187,52 +188,47 @@ public class Okno {
 		capacity_Field.setBounds(149, 104, 109, 20);
 		panel_Budynki.add(capacity_Field);
 		capacity_Field.setColumns(10);
-		
-		JLabel completionSize_Label = new JLabel("Completion_size");
+				
 		completionSize_Label.setBounds(20, 45, 109, 14);
 		panel_Budynki.add(completionSize_Label);
-		
-		JLabel onCopletion_Label = new JLabel("On Completion");
+				
 		onCopletion_Label.setBounds(20, 76, 109, 14);
 		panel_Budynki.add(onCopletion_Label);
-		
-		JLabel capacity_Label = new JLabel("Capacity");
+				
 		capacity_Label.setBounds(20, 105, 109, 14);
-		panel_Budynki.add(capacity_Label);
+		panel_Budynki.add(capacity_Label);		
 		
-		JLabel lblNewLabel_3 = new JLabel("Cost");
 		lblNewLabel_3.setBounds(20, 130, 46, 14);
 		panel_Budynki.add(lblNewLabel_3);
-		
-		JLabel lblNewLabel_4 = new JLabel("Time");
+				
 		lblNewLabel_4.setBounds(20, 161, 46, 14);
-		panel_Budynki.add(lblNewLabel_4);
+		panel_Budynki.add(lblNewLabel_4);		
 		
-		JLabel lblNewLabel_5 = new JLabel("Max Level");
-		lblNewLabel_5.setBounds(20, 186, 77, 14);
+		lblNewLabel_5.setBounds(20, 192, 77, 14);
 		panel_Budynki.add(lblNewLabel_5);
 		
 		cost_Field = new JTextField();
 		cost_Field.setBounds(149, 127, 109, 20);
 		panel_Budynki.add(cost_Field);
 		cost_Field.setColumns(10);
-		
+			
 		time_Field = new JTextField();
 		time_Field.setBounds(149, 158, 109, 20);
 		panel_Budynki.add(time_Field);
 		time_Field.setColumns(10);
 		
 		level_Field = new JTextField();
-		level_Field.setBounds(149, 183, 109, 20);
+		level_Field.setBounds(149, 189, 109, 20);
 		panel_Budynki.add(level_Field);
 		level_Field.setColumns(10);
 		
-		JButton buttonZapiszBudynek = new JButton("Zapisz");
-
 		buttonZapiszBudynek.setBounds(10, 294, 143, 23);
 		panel_Budynki.add(buttonZapiszBudynek);
-		
-		//======================================================================================================
+		PrzyciskiAkcje();
+	}
+	void ComboBoxItems() {
+		//Przypisanie elementow do ComboBoxow
+		BoxBudynki.addItem("");
 		BoxBudynki.addItem("Lotnisko");
 		BoxBudynki.addItem("Port");
 		BoxBudynki.addItem("Fort Morski");
@@ -250,13 +246,10 @@ public class Okno {
 		BoxOnCompletion.addItem("Electornicegineering practical");
 		BoxOnCompletion.addItem("Nuclear Bomb");
 		BoxOnCompletion.addItem("rocket practical");
-		BoxOnCompletion.addItem("militia_theory");
-
-		
-		//===================================================================================
-
-		
-		
+		BoxOnCompletion.addItem("militia_theory");		
+	}
+	void PrzyciskiAkcje() {
+		ComboBoxItems(); // Przypisanie elementow do ComboBoxow
 		//BUTTON listeners============================================================
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -287,32 +280,40 @@ public class Okno {
 				
 			}
 		});
-		
+			
 		mntmBudynki.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				panel_Budynki.setVisible(true);
 				BoxBudynki.setSelectedIndex(0);
 				BoxBudynki.addActionListener(new ActionListener() { // Obsluga combobox od budynkow
 					public void actionPerformed(ActionEvent e) {
-						
+		
 						CBoxItem LotniskoBoxItem = new CBoxItem(BoxBudynki,capacity_Label,"Lotnisko","Air Capacity");
-
-						buttonZapiszBudynek.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent e) {
-								cost = cost_Field.getText();
-								completion_size = completion_Field.getText();
-								time = time_Field.getText();
-								max_level = level_Field.getText();
-								capacity = capacity_Field.getText();
-								Budynki Lotnisko = new Budynki(sciezkaCommon,"Buildings",".txt","construction_practical",completion_size, capacity,"yes",cost,time,max_level,"yes");
-							}
-						});
-						CBoxItem PortBoxItem = new CBoxItem(BoxBudynki,capacity_Label,"Port","Port Capacity");
+							buttonZapiszBudynek.addActionListener(new ActionListener() {
+								public void actionPerformed(ActionEvent e) {
+									if(BoxBudynki.getSelectedItem()=="Lotnisko") {	
+										
+										if(building_save_control_value < 1) {
+											Wiadomosc("Dziala Lotnisko");
+											cost = cost_Field.getText();
+											int costINT = Integer.parseInt(cost);
+											completion_size = completion_Field.getText();
+											double completionDOUB = Double.parseDouble(completion_size);
+											time = time_Field.getText();
+											int timeINT = Integer.parseInt(time);
+											max_level = level_Field.getText();
+											int levelINT = Integer.parseInt(max_level);
+											capacity = capacity_Field.getText();
+											int capacityINT = Integer.parseInt(capacity);
+											Budynki Lotnisko = new Budynki(sciezkaCommon,"Buildings",".txt","construction_practical",completionDOUB, capacityINT,"yes",costINT,timeINT,levelINT,"yes");
+											}
+										building_save_control_value++;
+									}
+								}
+							});
 						
-						
+						CBoxItem PortBoxItem = new CBoxItem(BoxBudynki,capacity_Label,"Port","Port Capacity");					
 						CBoxItem FortBoxItem = new CBoxItem(BoxBudynki,capacity_Label,"Fort","Fort Level");
-						
-						
 						CBoxItem NavalFortBoxItem = new CBoxItem(BoxBudynki,capacity_Label,"Fort Morski","Fort Level");
 					}
 				});
@@ -322,8 +323,7 @@ public class Okno {
 				
 			}
 		});
-			
+		
 	}
-
 	void Wiadomosc(String message) {JOptionPane.showMessageDialog(null, message);}  // Message Dialog, przydatne		
 }
